@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block title %}
+ {{ course.title }} 
+ {% endblock title%} 
+{%block content %} 
+{% with title="تم التسجيل بنجاح <i class='fa fa-check'></i>" %} 
+{% include "include/navbar.html" %}
+ {% endwith %}
+<!-- About Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+            <div class="btn  rounded-pill text-success px-3 mb-3">
+                {% comment %} <i class="fa fa-circle-check" ></i> {% endcomment %}
+                {% comment %} <img src="{% static 'img/foricon.png' %}" rel="icon" /> {% endcomment %}
+                <i class="far fa-check-circle" style="font-size:90px"></i>
+            </div>
+            <h1 class="mb-4">"{{ client.name }}" تم تسجيلك بنجاح في كورس {{ client.course.title }} سيتم التواصل معك لتأكيد الاشتراك</h1>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+{% endblock content %}

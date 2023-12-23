@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %} الكورسات {% endblock title %}
+{%block content %} {% with title="كورسات" %} {% include "include/navbar.html" %}
+{% endwith %}
+<!-- Case Start -->
+<div class="container-fluid bg-light py-5">
+  <div class="container py-5">
+    <div
+      class="mx-auto text-center wow fadeIn"
+      data-wow-delay="0.1s"
+      style="max-width: 500px"
+    >
+      {% comment %} <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">
+        الكورسات
+      </div> {% endcomment %}
+      <h1 class="mb-4">الكورسات المتوفرة لدينا</h1>
+    </div>
+    <div class="row g-4">
+      {% for course in courses %}
+      <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+        <div class="case-item position-relative overflow-hidden rounded mb-2">
+          <img class="img-fluid" src="{{ course.image.url }}" alt="" style="width:" />
+          <a class="case-overlay text-decoration-none" href="{% url 'courses.show' course.id %}">
+            <small>{{ course.title }}</small>
+            <h5 class="lh-base text-white mb-3">
+               <span class="badge bg-success">متوفر</span>
+            </h5>
+            <span class="btn btn-square btn-primary"
+              ><i class="fa fa-arrow-right"></i
+            ></span>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Case End -->
+{% endblock content %}

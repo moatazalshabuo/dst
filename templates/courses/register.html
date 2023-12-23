@@ -1,0 +1,104 @@
+{% extends "base.html" %} 
+{% block title %}
+ {{ course.title }} 
+ {% endblock title%} 
+{%block content %} 
+{% with title="التسجيل" %} 
+{% include "include/navbar.html" %}
+ {% endwith %}
+<!-- About Start -->
+<!-- Contact Start -->
+<style>
+  .form-floating > label {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+</style>
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div
+      class="mx-auto text-center wow fadeIn"
+      data-wow-delay="0.1s"
+      style="max-width: 500px"
+    >
+      <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">
+        <h2>التسجيل {{ course.title }}</h2>
+      </div>
+      {% comment %}
+      <h1 class="mb-4">If You Have Any Query, Please Contact Us</h1>
+      {% endcomment %}
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="wow fadeIn" data-wow-delay="0.3s">
+          <form method="post" action="">
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-md-12">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="{{ form.name.name }}"
+                    value="{% if form.name.value != None %} {{ form.name.value }} {%endif%}"
+                    placeholder="الاسم الرباعي"
+                    required
+                  />
+                  <label for="name">الاسم الرباعي</label>
+                </div>
+                
+                {% if form.name.errors %}
+                  <p class="alert alert-danger">{{ form.name.errors }}</p>
+                {% endif %}
+              </div>
+
+              <div class="col-12">
+                <div class="form-floating">
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="{{ form.phone_number.name }}"
+                    value="{% if form.phone_number.value != None %} {{ form.phone_number.value }} {%endif%}"
+                    placeholder="رقم الهاتف"
+                  />
+                  <label for="subject">رقم الهاتف</label>
+                </div>
+                {% if form.phone_number.errors %}
+                  <p class="alert alert-danger">{{ form.phone_number.errors }}</p>
+                {% endif %}
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <textarea
+                    class="form-control"
+                    placeholder="تسجيل اية محلاظات"
+                    name="{{ form.notes.name }}"
+                    style="height: 150px"
+                  >
+                  
+                  {% if form.notes.errors %}
+                  <p class="alert alert-danger">{{ form.notes.value }}</p>
+                  {% endif %}
+                    
+                  
+                </textarea
+                  >{{ form.notes.errors }}
+                  <label for="message">ملاحظات</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary w-100 py-3" type="submit">
+                  تسجيل
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact End -->
+<!-- About End -->
+{% endblock content %}
